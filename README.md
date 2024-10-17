@@ -18,14 +18,6 @@ Redis es una base de datos de estructura de datos en memoria que se puede utiliz
 
 En este proyecto, Redis se utiliza para almacenar los ítems del carrito de compras de los usuarios que aún no han iniciado sesión, permitiendo así una persistencia temporal sin necesidad de una cuenta.
 
-## Requisitos Previos
-
-Antes de arrancar el proyecto, asegúrate de tener los siguientes componentes instalados:
-
-1. **Java 17** (o una versión compatible)
-2. **Maven** para construir el proyecto.
-3. **Redis** para el almacenamiento temporal del carrito de compras.
-
 ### Instalación de Redis
 
 #### En Linux/MacOS
@@ -33,3 +25,5 @@ Antes de arrancar el proyecto, asegúrate de tener los siguientes componentes in
 ```bash
 sudo apt-get install redis-server  # Para Ubuntu/Debian
 brew install redis  # Para MacOS
+
+
