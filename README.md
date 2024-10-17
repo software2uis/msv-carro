@@ -13,6 +13,7 @@ Este proyecto es una tienda en línea que implementa un carrito de compras con p
 - **Maven**: Herramienta de gestión de dependencias y construcción del proyecto.
 
 ## ¿Qué es Redis?
+![Logo de Redis](https://www.albertcoronado.com/wp-content/uploads/2016/06/redis_logo.png)
 
 Redis es una base de datos de estructura de datos en memoria que se puede utilizar como caché, cola de mensajes, y almacenamiento temporal. Es rápido y eficiente para manejar datos temporales que no necesitan persistir en un disco duro, como los carritos de compras de usuarios no autenticados.
 
