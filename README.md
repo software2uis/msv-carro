@@ -29,7 +29,8 @@ brew install redis  # Para MacOS
 ## Comandos para iniciar Redis
 
 ### Inicia el servidor Redis
-```redis-server
+```
+redis-server
 ```
 
 #### Para verificar que Redis está funcionando correctamente, ejecuta
