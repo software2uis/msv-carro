@@ -32,8 +32,7 @@ brew install redis  # Para MacOS
 ```
 redis-server
 ```
-
-#### Para verificar que Redis está funcionando correctamente, ejecuta
+Para verificar que Redis está funcionando correctamente, ejecuta
 ```
 redis-cli ping
 ```
