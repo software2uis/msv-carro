@@ -34,8 +34,10 @@ redis-server
 ```
 
 #### Para verificar que Redis está funcionando correctamente, ejecuta
+```
 redis-cli ping
-
+```
+La respuesta debería ser PONG, indicando que el servidor Redis está activo.
 
 
 
