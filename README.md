@@ -38,6 +38,29 @@ redis-cli ping
 ```
 La respuesta debería ser PONG, indicando que el servidor Redis está activo.
 
+## Cómo arrancar el proyecto
+### 1. Clonar el repositorio:
+```
+git clone <git clone https://github.com/software2uis/msv-carro.git>
+```
+### 2. Configurar Redis:
+```
+spring.redis.host=localhost
+spring.redis.port=6379
+```
+### 3. Compilar y arrancar la aplicación:
+Usa Maven para compilar el proyecto:
+```
+mvn clean install
+```
+Luego arranca el servicio:
+```
+mvn spring-boot:run
+
+```
+
+
+
 
 
 
