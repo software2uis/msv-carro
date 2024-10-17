@@ -18,9 +18,9 @@ Redis es una base de datos de estructura de datos en memoria que se puede utiliz
 
 En este proyecto, Redis se utiliza para almacenar los ítems del carrito de compras de los usuarios que aún no han iniciado sesión, permitiendo así una persistencia temporal sin necesidad de una cuenta.
 
-### Instalación de Redis
+## Instalación de Redis
 
-#### En Linux/MacOS
+### En Linux/MacOS
 
 ```bash
 sudo apt-get install redis-server  # Para Ubuntu/Debian
