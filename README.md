@@ -25,7 +25,18 @@ En este proyecto, Redis se utiliza para almacenar los ítems del carrito de comp
 ```bash
 sudo apt-get install redis-server  # Para Ubuntu/Debian
 brew install redis  # Para MacOS
-
+```
 ### Comandos para iniciar Redis
+
+# Inicia el servidor Redis
+redis-server
+
+#### Para verificar que Redis está funcionando correctamente, ejecuta
+redis-cli ping
+
+
+
+
+
 
 
