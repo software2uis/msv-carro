@@ -9,19 +9,18 @@ import jakarta.persistence.Id;
 public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
-
+    private Long id;
     private String nombre;
     private Integer cantidad;
     private Double precio;
 
     // Getters y Setters
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -47,5 +46,9 @@ public class CartItem {
 
     public void setPrecio(Double precio) {
         this.precio = precio;
+    }
+
+    public Double getSubtotal() {
+        return precio * cantidad;
     }
 }
