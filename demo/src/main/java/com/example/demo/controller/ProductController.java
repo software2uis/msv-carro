@@ -15,9 +15,11 @@ public class ProductController {
     private ProductRepository productRepository;
 
     @PostMapping
-    public void createProduct(@RequestBody Product product) {
+    public ResponseEntity<String> createProduct(@RequestBody @Valid Product product) {
         productRepository.save(product);
+    return ResponseEntity.ok("Producto creado satisfactoriamente");
     }
+
 
     @GetMapping("/{id}")
     public Product getProduct(@PathVariable String id) {
@@ -36,7 +38,14 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable String id) {
+    public ResponseEntity<String> deleteProduct(@PathVariable String id) {
         productRepository.delete(id);
-    }
+    return ResponseEntity.ok("Producto borrado satisfactoriamente");
+}
+
+
+    
+
+    
+
 }

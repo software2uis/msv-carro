@@ -27,12 +27,10 @@ public class ProductRepository {
 
     public List<Product> findAll() {
         Set<Object> keys = redisTemplate.opsForHash().keys(KEY);
-        List<Product> products = new ArrayList<>();
-        for (Object key : keys) {
-            products.add((Product) redisTemplate.opsForHash().get(KEY, key));
-        }
-        return products;
+        List<Object> products = redisTemplate.opsForHash().multiGet(KEY, keys);
+    return products.stream().map(obj -> (Product) obj).collect(Collectors.toList());
     }
+
 
     public void update(Product product) {
         save(product);  // En Redis, "save" también puede usarse para actualizar
