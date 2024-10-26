@@ -8,8 +8,8 @@
 		<version>3.3.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.tienda</groupId>
-	<artifactId>carro</artifactId>
+	<groupId>com.tuempresa</groupId>
+	<artifactId>shoppingcart</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>carro</name>
 	<description>Backend del sistema carrito de una tienda virtual</description>
