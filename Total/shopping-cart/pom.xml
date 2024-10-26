@@ -11,7 +11,7 @@
 	<groupId>com.tuempresa</groupId>
 	<artifactId>shoppingcart</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>carro</name>
+	<name>shoppingcart</name>
 	<description>Backend del sistema carrito de una tienda virtual</description>
 	<url/>
 	<licenses>
