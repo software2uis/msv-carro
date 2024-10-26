@@ -39,8 +39,10 @@ public class CartController {
         List<Product> cartContents = cartRepository.getCartContents();
         return ResponseEntity.ok(cartContents);
     }
+    // Método para obtener el total $ del carrito
+    @GetMapping("/total")
     public ResponseEntity<Double> getCartTotal() {
-        double total = cartService.calculateTotal();
+        double total = cartService.getCartTotal();
         return ResponseEntity.ok(total);
-    }
+}
 }
