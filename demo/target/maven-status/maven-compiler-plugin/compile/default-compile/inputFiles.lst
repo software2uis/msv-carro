@@ -1,0 +1,11 @@
+/home/jorge/msv-carro/demo/src/main/java/com/example/demo/DemoApplication.java
+/home/jorge/msv-carro/demo/src/main/java/com/example/demo/config/RedisConfig.java
+/home/jorge/msv-carro/demo/src/main/java/com/example/demo/controller/CartController.java
+/home/jorge/msv-carro/demo/src/main/java/com/example/demo/controller/LoginController.java
+/home/jorge/msv-carro/demo/src/main/java/com/example/demo/model/Product.java
+/home/jorge/msv-carro/demo/src/main/java/com/example/demo/model/User.java
+/home/jorge/msv-carro/demo/src/main/java/com/example/demo/repository/CartRepository.java
+/home/jorge/msv-carro/demo/src/main/java/com/example/demo/repository/RedisCartRepository.java
+/home/jorge/msv-carro/demo/src/main/java/com/example/demo/service/CartService.java
+/home/jorge/msv-carro/demo/src/main/java/com/example/demo/service/LoginService.java
+/home/jorge/msv-carro/demo/src/main/java/com/example/demo/swagger/SwaggerConfig.java
