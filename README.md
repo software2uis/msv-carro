@@ -1,6 +1,6 @@
-# msv-usuarios
+# msv-carro
 
-## Microservicio encargado del control de usuarios
+## Microservicio encargado del control de carro
 
 ### Prerequisites
 - Java 17.
@@ -11,7 +11,7 @@
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/software2uis/msv-usuarios.git
+   git clone https://github.com/software2uis/msv-carro.git
    ```
 2. Install dependencies:
    ```bash
