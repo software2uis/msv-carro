@@ -66,8 +66,7 @@ public void updateProductQuantity(String userId, String productId, int quantity)
         .filter(product -> product.getIdMongo().equals(productId))
         .findFirst()
         .ifPresent(product -> {
-            product.setQuantity(quantity);
-            cartRepository.addProduct(userId, product);
+            cartRepository.updateProductQuantity(userId, productId, quantity);
         });
 }
     

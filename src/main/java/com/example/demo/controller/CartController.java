@@ -44,12 +44,12 @@ public class CartController {
 
     // src/main/java/com/example/demo/controller/CartController.java
 
-@PutMapping("/update-quantity")
-public ResponseEntity<String> updateProductQuantity(@RequestParam String username, @RequestParam String productId, @RequestParam int quantity) {
+@PostMapping("/update-quantity")
+public ResponseEntity<String> updateProductQuantity(@RequestBody Product product,@RequestParam int quantity, @RequestParam String username) {
     if (!isUserLoggedIn(username)) {
         return ResponseEntity.status(403).body("No hay una sesión activa.");
     }
-    cartService.updateProductQuantity(username, productId, quantity);
+    cartService.updateProductQuantity(username, product.getIdMongo(), quantity);
     return ResponseEntity.ok("Cantidad del producto actualizada en el carrito de " + username + ".");
 }
 
