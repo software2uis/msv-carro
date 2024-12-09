@@ -46,8 +46,8 @@ public class CartService {
         // Elimina productos no presentes en el JSON enviado desde el frontend
         List<Product> existingProducts = getCartContents(userId);
         for (Product existingProduct : existingProducts) {
-            if (frontendProducts.stream().noneMatch(p -> p.getId().equals(existingProduct.getId()))) {
-                removeProduct(userId, existingProduct.getId());
+            if (frontendProducts.stream().noneMatch(p -> p.getIdMongo().equals(existingProduct.getIdMongo()))) {
+                removeProduct(userId, existingProduct.getIdMongo());
             }
         }
 

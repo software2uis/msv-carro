@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/cart")
+@CrossOrigin("*")
 public class CartController {
 
     private final CartService cartService;
@@ -20,9 +21,9 @@ public class CartController {
         this.userValidationService = userValidationService;
     }
 
-    private boolean isUserLoggedIn() {
+    private boolean isUserLoggedIn(String username) {
         // Actualiza el estado de la sesión antes de validar
-        userValidationService.checkActiveSession();
+        userValidationService.checkActiveSession(username);
         return userValidationService.isActiveSession();
     }
 
@@ -31,11 +32,10 @@ public class CartController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<String> addProductsToCart(@RequestBody List<Product> products) {
-        if (!isUserLoggedIn()) {
+    public ResponseEntity<String> addProductsToCart(@RequestBody List<Product> products, @RequestParam String username) {
+        if (!isUserLoggedIn(username)) {
             return ResponseEntity.status(403).body("No hay una sesión activa.");
         }
-        String username = getActiveUsername();
         for (Product product : products) {
             cartService.addProduct(username, product);
         }
@@ -43,51 +43,46 @@ public class CartController {
     }
 
     @DeleteMapping("/remove/{productId}")
-    public ResponseEntity<String> removeProductFromCart(@PathVariable String productId) {
-        if (!isUserLoggedIn()) {
+    public ResponseEntity<String> removeProductFromCart(@PathVariable String productId, @RequestParam String username) {
+        if (!isUserLoggedIn(username)) {
             return ResponseEntity.status(403).body("No hay una sesión activa.");
         }
-        String username = getActiveUsername();
         cartService.removeProduct(username, productId);
         return ResponseEntity.ok("Producto eliminado del carrito de " + username + ".");
     }
 
     @GetMapping("/contents")
-    public ResponseEntity<List<Product>> getCartContents() {
-        if (!isUserLoggedIn()) {
+    public ResponseEntity<List<Product>> getCartContents(@RequestParam String username  ) {
+        if (!isUserLoggedIn(username)) {
             return ResponseEntity.status(403).body(null);
         }
-        String username = getActiveUsername();
         List<Product> cartContents = cartService.getCartContents(username);
         return ResponseEntity.ok(cartContents);
     }
 
     @GetMapping("/total")
-    public ResponseEntity<String> calculateTotal() {
-        if (!isUserLoggedIn()) {
+    public ResponseEntity<String> calculateTotal(@RequestParam String username) {
+        if (!isUserLoggedIn(username)) {
             return ResponseEntity.status(403).body("No hay una sesión activa.");
         }
-        String username = getActiveUsername();
         double total = cartService.calculateTotal(username);
         return ResponseEntity.ok("El total del carrito de " + username + " es: " + total + ".");
     }
 
     @PostMapping("/create")
-    public ResponseEntity<String> createEmptyCart() {
-        if (!isUserLoggedIn()) {
+    public ResponseEntity<String> createEmptyCart(@RequestParam String username) {
+        if (!isUserLoggedIn(username)) {
             return ResponseEntity.status(403).body("No hay una sesión activa.");
         }
-        String username = getActiveUsername();
         cartService.createCart(username);
         return ResponseEntity.ok("Carrito vacío creado para " + username + ".");
     }
 
     @PostMapping("/sync")
-    public ResponseEntity<String> syncCart(@RequestBody List<Product> products) {
-        if (!isUserLoggedIn()) {
+    public ResponseEntity<String> syncCart(@RequestBody List<Product> products, @RequestParam String username   ) {
+        if (!isUserLoggedIn(username)) {
             return ResponseEntity.status(403).body("No hay una sesión activa.");
         }
-        String username = getActiveUsername();
         cartService.syncCart(username, products);
         return ResponseEntity.ok("Carrito sincronizado para " + username + ".");
     }

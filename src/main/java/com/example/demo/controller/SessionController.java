@@ -14,16 +14,16 @@ public class SessionController {
     @Autowired
     private UserValidationService userValidationService;
 
-    @GetMapping("/test-session")
-    public Map<String, Object> testActiveSession() {
-        // Llama al método para verificar la sesión activa
-        userValidationService.checkActiveSession();
-
-        // Prepara la respuesta
-        Map<String, Object> response = new HashMap<>();
-        response.put("isActiveSession", userValidationService.isActiveSession());
-        response.put("activeUsername", userValidationService.getActiveUsername());
-
-        return response;
-    }
+//    @GetMapping("/test-session")
+//    public Map<String, Object> testActiveSession() {
+//        // Llama al método para verificar la sesión activa
+//        userValidationService.checkActiveSession();
+//
+//        // Prepara la respuesta
+//        Map<String, Object> response = new HashMap<>();
+//        response.put("isActiveSession", userValidationService.isActiveSession());
+//        response.put("activeUsername", userValidationService.getActiveUsername());
+//
+//        return response;
+//    }
 }
