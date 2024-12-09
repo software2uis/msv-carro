@@ -42,6 +42,17 @@ public class CartController {
         return ResponseEntity.ok("Productos añadidos al carrito de " + username + ".");
     }
 
+    // src/main/java/com/example/demo/controller/CartController.java
+
+@PutMapping("/update-quantity")
+public ResponseEntity<String> updateProductQuantity(@RequestParam String username, @RequestParam String productId, @RequestParam int quantity) {
+    if (!isUserLoggedIn(username)) {
+        return ResponseEntity.status(403).body("No hay una sesión activa.");
+    }
+    cartService.updateProductQuantity(username, productId, quantity);
+    return ResponseEntity.ok("Cantidad del producto actualizada en el carrito de " + username + ".");
+}
+
     @DeleteMapping("/remove/{productId}")
     public ResponseEntity<String> removeProductFromCart(@PathVariable String productId, @RequestParam String username) {
         if (!isUserLoggedIn(username)) {

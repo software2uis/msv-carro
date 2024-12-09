@@ -56,5 +56,19 @@ public class CartService {
             addProduct(userId, product); // Actualiza cantidades si es necesario
         }
     }
+    // src/main/java/com/example/demo/service/CartService.java
+
+// src/main/java/com/example/demo/service/CartService.java
+
+public void updateProductQuantity(String userId, String productId, int quantity) {
+    List<Product> cartContents = cartRepository.getCartContents(userId);
+    cartContents.stream()
+        .filter(product -> product.getIdMongo().equals(productId))
+        .findFirst()
+        .ifPresent(product -> {
+            product.setQuantity(quantity);
+            cartRepository.addProduct(userId, product);
+        });
+}
     
 }

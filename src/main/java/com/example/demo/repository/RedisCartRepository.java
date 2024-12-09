@@ -44,6 +44,21 @@ public class RedisCartRepository implements CartRepository {
             e.printStackTrace();
         }
     }
+    // src/main/java/com/example/demo/repository/RedisCartRepository.java
+
+@Override
+public void updateProductQuantity(String userId, String productId, int quantity) {
+    Product product = getProduct(userId, productId);
+    if (product != null) {
+        product.setQuantity(quantity);
+        try {
+            String productJson = objectMapper.writeValueAsString(product);
+            redisTemplate.opsForHash().put(CART_KEY_PREFIX + userId, productId, productJson);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
+}
 
     @Override
     public void removeProduct(String userId, String productId) {
