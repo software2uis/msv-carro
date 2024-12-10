@@ -46,8 +46,8 @@ public class CartService {
         // Elimina productos no presentes en el JSON enviado desde el frontend
         List<Product> existingProducts = getCartContents(userId);
         for (Product existingProduct : existingProducts) {
-            if (frontendProducts.stream().noneMatch(p -> p.getId().equals(existingProduct.getId()))) {
-                removeProduct(userId, existingProduct.getId());
+            if (frontendProducts.stream().noneMatch(p -> p.getIdMongo().equals(existingProduct.getIdMongo()))) {
+                removeProduct(userId, existingProduct.getIdMongo());
             }
         }
 
@@ -56,5 +56,18 @@ public class CartService {
             addProduct(userId, product); // Actualiza cantidades si es necesario
         }
     }
+    // src/main/java/com/example/demo/service/CartService.java
+
+// src/main/java/com/example/demo/service/CartService.java
+
+public void updateProductQuantity(String userId, String productId, int quantity) {
+    List<Product> cartContents = cartRepository.getCartContents(userId);
+    cartContents.stream()
+        .filter(product -> product.getIdMongo().equals(productId))
+        .findFirst()
+        .ifPresent(product -> {
+            cartRepository.updateProductQuantity(userId, productId, quantity);
+        });
+}
     
 }

@@ -4,32 +4,30 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 
 public class Product implements Serializable {
-    private String id;
+    private String idMongo;
 
-    @JsonProperty("name Producto")
     private String name;
-
-    @JsonProperty("Product Description")
-    private String description;
 
     private double price;
     private int quantity;
 
-    public Product(String id, String name, String description, double price, int quantity) {
-        this.id = id;
+    private String imageUrl;
+
+    public Product(String idMongo, String name, double price, int quantity, String imageUrl) {
+        this.idMongo = idMongo;
         this.name = name;
-        this.description = description;
         this.price = price;
         this.quantity = quantity;
+        this.imageUrl = imageUrl;
     }
 
     // Getters y Setters
-    public String getId() {
-        return id;
+    public String getIdMongo() {
+        return idMongo;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdMongo(String idMongo) {
+        this.idMongo = idMongo;
     }
 
     public String getName() {
@@ -40,13 +38,6 @@ public class Product implements Serializable {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public double getPrice() {
         return price;
@@ -62,5 +53,13 @@ public class Product implements Serializable {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -12,6 +13,9 @@ public class UserValidationService {
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper; // Para convertir JSON en Map
 
+    @Value("${usuario.service.url}")
+    String url;
+
     private boolean isActiveSession = false;
     private String activeUsername = null;
 
@@ -20,19 +24,18 @@ public class UserValidationService {
         this.objectMapper = objectMapper;
     }
 
-    public void checkActiveSession() {
-        String url = "http://localhost:8082/api/user/login/active-session"; // URL para obtener la sesión activa
+    public void checkActiveSession(String  username) {
+        String end = url + "/api/user/login/active-session/"+username; // URL para obtener la sesión activa
         try {
             // Realiza la consulta y recibe la respuesta como String
-            String response = restTemplate.getForObject(url, String.class);
+            boolean response = restTemplate.getForObject(end, boolean.class);
 
-            // Convierte la respuesta JSON en un Map
-            Map<String, Object> responseMap = objectMapper.readValue(response, Map.class);
+
 
             // Asigna los valores a variables
-            if (responseMap != null) {
-                isActiveSession = (boolean) responseMap.getOrDefault("isLoggedIn", false);
-                activeUsername = (String) responseMap.getOrDefault("username", null);
+            if (response) {
+                isActiveSession = response;
+                activeUsername = username;
             } else {
                 resetSessionData();
             }

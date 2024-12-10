@@ -24,15 +24,10 @@ public class RedisCartRepository implements CartRepository {
 
     @Override
     public void addProduct(String userId, Product product) {
-        try {
-            String productJson = objectMapper.writeValueAsString(product);
-            redisTemplate.opsForHash().put(CART_KEY_PREFIX + userId, product.getId(), productJson);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+
         try {
             // Comprobar si el producto ya existe en el carrito
-            Product existingProduct = getProduct(userId, product.getId());
+            Product existingProduct = getProduct(userId, product.getIdMongo());
             
             if (existingProduct != null) {
                 // Si el producto ya existe, actualiza la cantidad sumando la cantidad actual
@@ -41,13 +36,29 @@ public class RedisCartRepository implements CartRepository {
             
             // Convertir el producto actualizado a JSON
             String productJson = objectMapper.writeValueAsString(product);
-            
+
+
             // Guardar el producto actualizado en Redis
-            redisTemplate.opsForHash().put(CART_KEY_PREFIX + userId, product.getId(), productJson);
+            redisTemplate.opsForHash().put(CART_KEY_PREFIX + userId, product.getIdMongo(), productJson);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
     }
+    // src/main/java/com/example/demo/repository/RedisCartRepository.java
+
+@Override
+public void updateProductQuantity(String userId, String productId, int quantity) {
+    Product product = getProduct(userId, productId);
+    if (product != null) {
+        product.setQuantity(quantity);
+        try {
+            String productJson = objectMapper.writeValueAsString(product);
+            redisTemplate.opsForHash().put(CART_KEY_PREFIX + userId, productId, productJson);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
+}
 
     @Override
     public void removeProduct(String userId, String productId) {
